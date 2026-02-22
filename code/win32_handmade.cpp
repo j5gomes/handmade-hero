@@ -1,6 +1,6 @@
 /*======================================================================
  * $File: $
- * $Date: $
+* $Date: $
  * $Revision: $
  * $Creator: j5gomes $
  * $Notice: (C) Copyright 2026 by j5gomes, Inc. All Rights Reserved. $
@@ -39,6 +39,29 @@ MainWindowCallback(
         {
             OutputDebugStringA("WM_ACTIVATEAPP\n");
         } break;
+
+	case WM_PAINT:
+	{
+        PAINTSTRUCT Paint;
+		HDC DeviceContext = BeginPaint(Window, &Paint);
+
+        int X = Paint.rcPaint.left;
+        int Y = Paint.rcPaint.top;
+        int Height = Paint.rcPaint.bottom - Paint.rcPaint.top;
+        int Width = Paint.rcPaint.right - Paint.rcPaint.left;
+        static DWORD Operation = WHITENESS;
+        PatBlt(DeviceContext, X, Y, Width, Height, Operation);
+
+        if(Operation == WHITENESS)
+        {
+            Operation = BLACKNESS;
+        }
+        else
+        {
+            Operation = WHITENESS;
+        }
+		EndPaint(Window, &Paint);
+	} break;
     
         default:
         {
