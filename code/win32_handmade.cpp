@@ -59,7 +59,7 @@ Win32UpdateWindow(HDC DeviceContext, int X, int Y, int Width, int Height)
     StretchDIBits(DeviceContext,
                   X, Y, Width, Height,
                   X, Y, Width, Height,
-                  BitmapDeviceContext,
+                  BitmapMemory,
                   &BitmapInfo,
                   DIB_RGB_COLORS, SRCCOPY);
 }
